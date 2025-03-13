@@ -86,6 +86,8 @@ class Playlist {
     }
 }
 
+const artista1 = new Artista("Artista Exemplo", "url_da_foto.jpg");
+const playlist = new Playlist("Minha Playlist");
 
 function exibirMenu() {
     console.log("Menu:")
@@ -106,24 +108,24 @@ function adicionarItem() {
     const arquivo = prompt("Digite o caminho do arquivo da música:")
 
     const novaMusica = new Musica(titulo, artista, duracao, arquivo)
-    Artista.adicionarMusica(novaMusica)
-    Playlist.adicionarMusica(novaMusica)
+    artista1.adicionarMusica(novaMusica)
+    playlist.adicionarMusica(novaMusica)
 }
 
 function removerItem() {
     const titulo = prompt("Digite o título da música que deseja remover:")
-    const musicaParaRemover = Artista.listaDeMusicas().find(m => m.titulo === titulo)
+    const musicaParaRemover = artista1.listaDeMusicas().find(m => m.titulo === titulo)
 
     if (musicaParaRemover) {
-        Artista.removerMusica(musicaParaRemover)
-        Playlist.removerMusica(musicaParaRemover)
+        artista1.removerMusica(musicaParaRemover)
+        playlist.removerMusica(musicaParaRemover)
     } else {
         console.log("Música não encontrada.")
     }
 }
 
 function listarMusicas() {
-    const musicas = Artista.listaDeMusicas()
+    const musicas = artista1.listaDeMusicas()
     if (musicas.length > 0) {
         console.log("Músicas do artista:")
         musicas.forEach(musica => {
@@ -135,12 +137,12 @@ function listarMusicas() {
 }
 
 function reproduzirMusicaAtual() {
-    Playlist.reproduzir()
+    playlist.reproduzir()
 }
 
 function pausarMusica() {
-    if (Playlist.musicas.length > 0) {
-        const musicaAtual = Playlist.musicas[Playlist.musicaAtualIndex]
+    if (playlist.musicas.length > 0) {
+        const musicaAtual = playlist.musicas[playlist.musicaAtualIndex]
         musicaAtual.pausar()
     } else {
         console.log("A playlist está vazia.")
@@ -148,11 +150,11 @@ function pausarMusica() {
 }
 
 function avancarMusica() {
-    Playlist.avancarMusica()
+    playlist.avancarMusica()
 }
 
 function voltarMusica() {
-    Playlist.voltarMusica()
+    playlist.voltarMusica()
 }
 
 function iniciarMenu() {
